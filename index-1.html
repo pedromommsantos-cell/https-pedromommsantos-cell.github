@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meu Portifólio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #171320;
+    --bg-soft: #211B2C;
+    --card: #241E30;
+    --text: #EEEAF6;
+    --text-soft: #A79FC0;
+    --gold: #F2B441;
+    --periwinkle: #9A96F5;
+    --line: #362E45;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .display{ font-family: 'Fraunces', serif; }
+
+  .mesh{
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background:
+      radial-gradient(circle at 20% 15%, rgba(242,180,65,0.16), transparent 45%),
+      radial-gradient(circle at 85% 60%, rgba(154,150,245,0.18), transparent 50%);
+    animation: meshmove 26s ease-in-out infinite alternate;
+    pointer-events: none;
+  }
+
+  @keyframes meshmove{
+    0%   { background-position: 0% 0%, 0% 0%; }
+    100% { background-position: 10% 6%, -8% -10%; }
+  }
+
+  .wrap{
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .topnav{
+    position: sticky;
+    top: 14px;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin: 18px auto 0;
+    width: fit-content;
+    padding: 8px;
+    border-radius: 999px;
+    background: rgba(36,30,48,0.7);
+    backdrop-filter: blur(14px);
+    border: 1px solid var(--line);
+  }
+
+  .topnav a{
+    color: var(--text-soft);
+    text-decoration: none;
+    font-size: 14px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    transition: color 0.2s ease, background 0.2s ease;
+  }
+
+  .topnav a.active{ color: var(--bg); background: var(--gold); }
+
+  /* HERO */
+  header.hero{
+    position: relative;
+    margin-top: 40px;
+    padding: 56px 32px;
+    border-radius: 28px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .glow{
+    position: absolute;
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(242,180,65,0.35), transparent 70%);
+    left: var(--gx, 50%);
+    top: var(--gy, 30%);
+    transform: translate(-50%,-50%);
+    z-index: -1;
+    transition: left 0.15s ease, top 0.15s ease;
+    filter: blur(10px);
+  }
+
+  .kicker{
+    font-size: 14px;
+    color: var(--gold);
+    margin: 0 0 16px;
+    font-weight: 500;
+  }
+
+  h1{
+    font-size: clamp(42px, 8vw, 72px);
+    line-height: 1.02;
+    margin: 0 0 20px;
+    font-weight: 600;
+    font-optical-sizing: auto;
+  }
+
+  h1 em{
+    font-style: italic;
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  .hero p.lede{
+    font-size: 18px;
+    max-width: 46ch;
+    color: var(--text-soft);
+    margin: 0;
+  }
+
+  /* BENTO GRID */
+  .bento{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .cell{
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    padding: 28px;
+    transition: transform 0.35s cubic-bezier(.2,.8,.2,1), border-color 0.3s ease;
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+
+  .cell.about{ grid-column: span 4; }
+  .cell.stat{ grid-column: span 2; display: flex; flex-direction: column; justify-content: center; }
+  .cell.project{ grid-column: span 6; }
+
+  .stat .num{
+    font-size: 44px;
+    font-weight: 600;
+    color: var(--periwinkle);
+    margin: 0;
+  }
+
+  .stat .label{
+    font-size: 13px;
+    color: var(--text-soft);
+    margin: 4px 0 0;
+  }
+
+  .about p{
+    font-size: 17px;
+    color: var(--text-soft);
+    margin: 0 0 12px;
+    max-width: 50ch;
+  }
+
+  .about strong{ color: var(--text); font-weight: 600; }
+
+  section{ margin-top: 56px; }
+
+  .section-label{
+    font-size: 13px;
+    color: var(--text-soft);
+    text-transform: none;
+    margin: 0 0 18px 4px;
+  }
+
+  .project-role{
+    font-size: 13px;
+    color: var(--gold);
+    margin: 0 0 10px;
+    font-weight: 500;
+  }
+
+  .project-title{
+    font-size: 28px;
+    margin: 0 0 10px;
+    font-weight: 600;
+  }
+
+  .project-desc{
+    color: var(--text-soft);
+    max-width: 60ch;
+    margin: 0 0 16px;
+    font-size: 16px;
+  }
+
+  .tags{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag{
+    font-size: 12px;
+    color: var(--periwinkle);
+    background: rgba(154,150,245,0.12);
+    padding: 5px 12px;
+    border-radius: 999px;
+  }
+
+  /* CONTACT */
+  .contact-row{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .contact-card{
+    grid-column: span 3;
+    text-decoration: none;
+    display: block;
+  }
+
+  .contact-card .cell{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .contact-card .cell:hover{
+    border-color: var(--gold);
+    transform: translateY(-3px);
+  }
+
+  .contact-label{
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .contact-sub{
+    font-size: 13px;
+    color: var(--text-soft);
+    margin-top: 2px;
+  }
+
+  .arrow{ color: var(--gold); font-size: 20px; }
+
+  footer{
+    margin-top: 56px;
+    font-size: 13px;
+    color: var(--text-soft);
+    text-align: center;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    .mesh{ animation: none; }
+    .cell{ transition: none; }
+  }
+
+  @media (max-width: 640px){
+    .cell.about{ grid-column: span 6; }
+    .cell.stat{ grid-column: span 3; }
+    .contact-card{ grid-column: span 6; }
+    header.hero{ padding: 40px 22px; margin-top: 24px; }
+    .topnav{ top: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="mesh"></div>
+
+<nav class="topnav">
+  <a href="#sobre" data-nav>Sobre</a>
+  <a href="#projetos" data-nav>Projetos</a>
+  <a href="#contato" data-nav>Contato</a>
+</nav>
+
+<div class="wrap">
+
+  <header class="hero" id="heroCard">
+    <div class="glow" id="glow"></div>
+    <p class="kicker">Pedro</p>
+    <h1>Meu <em>Portifólio</em></h1>
+    <p class="lede">Estudante explorando automação, programação e o ponto onde as duas se encontram com empreendedorismo.</p>
+  </header>
+
+  <section id="sobre">
+    <p class="section-label">Sobre</p>
+    <div class="bento">
+      <div class="cell about">
+        <p>Estou estudando <strong>front-end</strong> e <strong>back-end</strong>, já manejando bem <strong>HTML</strong> e <strong>CSS</strong> pra estruturar e estilizar interfaces do zero.</p>
+        <p>Gosto de entender como uma página é montada peça por peça antes de partir pra lógica que roda por trás dela — é assim que estou avançando aos poucos para o back-end.</p>
+      </div>
+      <div class="cell stat">
+        <p class="num">02</p>
+        <p class="label">projetos em destaque</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="projetos">
+    <p class="section-label">Projetos</p>
+    <div class="bento">
+      <div class="cell project">
+        <p class="project-role">Automação · n8n</p>
+        <h3 class="project-title">Fluxo de pedidos — Neodent</h3>
+        <p class="project-desc">Workflow para uma empresa de implantes dentários: um formulário compara produtos, o pedido é salvo automaticamente numa tabela de dados e a confirmação sai por e-mail em HTML — sem intervenção manual.</p>
+        <div class="tags">
+          <span class="tag">Form Trigger</span>
+          <span class="tag">Data Table</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">Gmail API</span>
+        </div>
+      </div>
+      <div class="cell project">
+        <p class="project-role">Mobile · React Native</p>
+        <h3 class="project-title">Clone de feed — estilo Instagram</h3>
+        <p class="project-desc">Interface de feed construída em Expo Snack usando componentes básicos e estilos inline, reproduzindo a experiência de rolar e curtir posts com imagens próprias.</p>
+        <div class="tags">
+          <span class="tag">React Native</span>
+          <span class="tag">Expo</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contato">
+    <p class="section-label">Contato</p>
+    <div class="bento contact-row">
+      <a class="contact-card" href="mailto:seuemail@exemplo.com">
+        <div class="cell">
+          <div>
+            <p class="contact-label">E-mail</p>
+            <p class="contact-sub">seuemail@exemplo.com</p>
+          </div>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+      <a class="contact-card" href="https://github.com/seu-usuario" target="_blank" rel="noopener">
+        <div class="cell">
+          <div>
+            <p class="contact-label">GitHub</p>
+            <p class="contact-sub">github.com/seu-usuario</p>
+          </div>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <footer>Feito por Pedro.</footer>
+
+</div>
+
+<script>
+  // nav active state
+  const links = document.querySelectorAll('[data-nav]');
+  const sections = ['sobre','projetos','contato'].map(id => document.getElementById(id));
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        links.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`[data-nav][href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-40% 0px -50% 0px' });
+  sections.forEach(s => s && navObserver.observe(s));
+
+  // cursor glow in hero (skip on touch-only devices)
+  const hero = document.getElementById('heroCard');
+  const glow = document.getElementById('glow');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (hero && glow && !reduceMotion && window.matchMedia('(hover: hover)').matches){
+    hero.addEventListener('mousemove', (e) => {
+      const rect = hero.getBoundingClientRect();
+      glow.style.setProperty('--gx', (e.clientX - rect.left) + 'px');
+      glow.style.setProperty('--gy', (e.clientY - rect.top) + 'px');
+    });
+  }
+
+  // subtle tilt on cells (desktop hover only)
+  if (!reduceMotion && window.matchMedia('(hover: hover)').matches){
+    document.querySelectorAll('.cell').forEach(cell => {
+      cell.addEventListener('mousemove', (e) => {
+        const r = cell.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5;
+        const y = (e.clientY - r.top) / r.height - 0.5;
+        cell.style.transform = `perspective(600px) rotateX(${y * -4}deg) rotateY(${x * 4}deg) translateY(-2px)`;
+      });
+      cell.addEventListener('mouseleave', () => {
+        cell.style.transform = '';
+      });
+    });
+  }
+</script>
+
+</body>
+</html>
